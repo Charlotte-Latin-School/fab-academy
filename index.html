@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fab Academy at Charlotte Latin</title>
+<meta name="description" content="What Fab Academy is, what students make, and what families should weigh before joining the Charlotte Latin Fab Academy 2027 class.">
+<meta property="og:title" content="Fab Academy at Charlotte Latin">
+<meta property="og:description" content="A hands-on, college-level digital fabrication course. See student work and what to consider before you commit.">
+<meta property="og:image" content="https://fabacademy.org/2026/labs/charlotte/students/maxwell-negrin/presentation.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f5f1;
+    --panel: #ebe9e2;
+    --ink: #17202e;
+    --ink-soft: #4a5463;
+    --rule: #cfccc2;
+    --signal: #d9480f;
+    --signal-ink: #a63608;
+    --head: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #12171f;
+      --panel: #1b222d;
+      --ink: #eceae3;
+      --ink-soft: #a9b0bc;
+      --rule: #333c4a;
+      --signal: #ff7a3d;
+      --signal-ink: #ff9a68;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+  a { color: var(--signal-ink); text-underline-offset: 0.18em; }
+  a:hover { color: var(--ink); }
+  :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
+  h1, h2, h3 { font-family: var(--head); line-height: 1.1; margin: 0; letter-spacing: -0.015em; }
+  p { margin: 0 0 1em; max-width: 66ch; }
+  .wrap { width: min(1120px, 100% - 2rem); margin-inline: auto; }
+  .skip { position: absolute; left: -999px; }
+  .skip:focus { left: 1rem; top: 1rem; background: var(--ink); color: var(--paper); padding: .5rem .8rem; z-index: 10; }
+
+  /* top bar */
+  .bar { position: sticky; top: 0; z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  .bar .wrap { display: flex; gap: 1.5rem; align-items: baseline; overflow-x: auto; padding-block: .75rem; white-space: nowrap; }
+  .bar strong { font-family: var(--head); font-size: 1rem; margin-right: auto; }
+  .bar a { font-family: var(--head); font-size: .95rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; }
+  .bar a:hover { color: var(--signal-ink); text-decoration: underline; }
+
+  /* hero */
+  .hero { padding-block: clamp(2.5rem, 6vw, 5rem) 2.5rem; }
+  .hero-grid { display: grid; gap: 2.5rem; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.05fr 1fr; } }
+  .hero h1 { font-size: clamp(2.4rem, 5.6vw, 4.2rem); font-weight: 700; max-width: 14ch; }
+  .hero .lede { font-size: 1.3rem; margin-top: 1.4rem; color: var(--ink-soft); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.6rem; }
+  .btn { display: inline-block; font-family: var(--head); font-weight: 700; font-size: 1rem; padding: .75rem 1.2rem; border: 2px solid var(--ink); color: var(--ink); text-decoration: none; }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn.primary { background: var(--signal); border-color: var(--signal); color: #fff; }
+  .btn.primary:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .hero figure { margin: 0; }
+  .hero img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: #000; border: 1px solid var(--rule); }
+  figcaption { font-size: .95rem; color: var(--ink-soft); margin-top: .5rem; }
+
+  /* fast facts */
+  .facts { margin: 0; padding: 1.2rem 0 0; border-top: 3px solid var(--ink); display: grid; gap: 1.2rem 2rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .facts dt { font-family: var(--head); font-weight: 700; font-size: 1.05rem; }
+  .facts dd { margin: .15rem 0 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.45; }
+
+  /* sections */
+  section { padding-block: clamp(2.5rem, 6vw, 4.5rem); border-top: 1px solid var(--rule); }
+  section > .wrap > h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); margin-bottom: 1.4rem; }
+  .split { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .split { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+  .split h3 { font-size: 1.4rem; margin-bottom: .8rem; }
+  ul.plain { margin: 0; padding-left: 1.1rem; max-width: 60ch; }
+  ul.plain li { margin-bottom: .6rem; }
+  .why-not { border-left: 4px solid var(--signal); padding-left: 1.4rem; }
+
+  /* featured projects */
+  .project { display: grid; gap: 1.2rem; grid-template-columns: 1fr; padding-block: 2rem; border-top: 1px solid var(--rule); }
+  .project:first-of-type { border-top: 0; padding-top: .5rem; }
+  @media (min-width: 900px) {
+    .project { grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: start; }
+    .project:nth-of-type(even) { grid-template-columns: 1fr 1.4fr; }
+    .project:nth-of-type(even) img { order: 2; }
+  }
+  .project img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #000; border: 1px solid var(--rule); }
+  .project h3 { font-size: 1.5rem; margin-bottom: .3rem; }
+  .project .who { font-family: var(--head); font-weight: 500; color: var(--ink-soft); margin-bottom: .8rem; }
+  .project p { margin-bottom: .8rem; }
+  .links a { margin-right: 1rem; font-family: var(--head); font-weight: 500; }
+
+  details { border: 1px solid var(--rule); background: var(--panel); margin-top: 2rem; }
+  summary { cursor: pointer; font-family: var(--head); font-weight: 700; padding: 1rem 1.2rem; }
+  details > .inner { padding: 0 1.2rem 1.2rem; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 1rem; }
+  th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-family: var(--head); font-weight: 700; border-bottom: 2px solid var(--ink); }
+  .table-scroll { overflow-x: auto; }
+
+  /* considerations as rows */
+  .rows { margin: 0; }
+  .row { display: grid; gap: .4rem 2.5rem; grid-template-columns: 1fr; padding-block: 1.4rem; border-top: 1px solid var(--rule); }
+  @media (min-width: 900px) { .row { grid-template-columns: 14rem 1fr; } }
+  .row dt { font-family: var(--head); font-weight: 700; font-size: 1.2rem; }
+  .row dd { margin: 0; }
+  .row dd p:last-child { margin-bottom: 0; }
+
+  /* schedule */
+  .sched td:first-child { white-space: nowrap; width: 8.5rem; font-family: var(--head); font-weight: 500; }
+  .sched tr.recit td { color: var(--ink-soft); font-style: italic; }
+  .sched tr.mark td { background: var(--panel); font-weight: 600; }
+  .sched tr.mark td:first-child { box-shadow: inset 4px 0 0 var(--signal); }
+
+  /* faq */
+  .faq details { margin-top: 0; border-width: 0 0 1px; background: transparent; }
+  .faq summary { padding-inline: 0; font-size: 1.1rem; }
+  .faq details > p { padding-bottom: 1rem; }
+
+  .note { background: var(--panel); border-left: 4px solid var(--signal); padding: 1rem 1.2rem; max-width: 66ch; }
+  footer { border-top: 3px solid var(--ink); padding-block: 2rem 3rem; color: var(--ink-soft); font-size: 1rem; }
+  footer p { max-width: none; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="bar" aria-label="Page sections">
+  <div class="wrap">
+    <strong>Fab Academy at Charlotte Latin</strong>
+    <a href="#what">What it is</a>
+    <a href="#work">Student work</a>
+    <a href="#different">What's different</a>
+    <a href="#why">Why or why not</a>
+    <a href="#consider">Before you decide</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#faq">Questions</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1>Students learn to make almost anything.</h1>
+        <p class="lede">Fab Academy is a college-level digital fabrication course. Every week a student plans and builds something new, and by June they have a personal portfolio and a working final project. Charlotte Latin's Fab Lab offers it to high school students.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#work">See what students made</a>
+          <a class="btn" href="#consider">What to weigh first</a>
+        </div>
+      </div>
+      <figure>
+        <img src="https://fabacademy.org/2026/labs/charlotte/students/maxwell-negrin/presentation.png" alt="Final project slide for MN5, a 5-axis robotic arm built by Charlotte Latin student Max Negrin" width="1920" height="1080">
+        <figcaption>MN5, a 5-axis robotic arm built for about $400 by Max Negrin, Fab Academy 2026.</figcaption>
+      </figure>
+    </div>
+    <dl class="facts">
+      <div><dt>Class time</dt><dd>Monday to Thursday, 3:00 to 5:30 PM, with some Saturdays</dd></div>
+      <div><dt>2027 dates</dt><dd>Starts January 20. Final presentations June 7 to 11.</dd></div>
+      <div><dt>Cost</dt><dd>$5,750 total: $750 for Pre-Fab in the fall and $5,000 for Fab Academy</dd></div>
+      <div><dt>Decision point</dt><dd>Families decide in December, after the fall Pre-Fab class</dd></div>
+    </dl>
+  </div>
+</header>
+
+<section id="what">
+  <div class="wrap">
+    <h2>What Fab Academy is</h2>
+    <p>Fab Academy is a hands-on course in rapid prototyping. Each week students learn a new fabrication skill, such as 3D printing, laser cutting, computer-aided design, electronics design, CNC machining, molding and casting, networking, and programming. They then plan and complete a project that uses it.</p>
+    <p>The course grew out of Neil Gershenfeld's MIT class, "How to Make Almost Anything." It is taught to students at about 60 to 70 labs worldwide, called nodes, out of roughly 3,000 Fab Labs. Charlotte Latin's Fab Lab is one of them.</p>
+    <p>Students document every week of work on their own public website. The weekly projects build toward a capstone: a final project that combines the skills from the whole course.</p>
+    <p>Work is reviewed in three ways: by the local instructors, by Neil Gershenfeld, and by a global evaluator. This year students also give three oral defenses of their work.</p>
+    <p><a href="https://fabacademy.org/">Fab Academy's official site</a> has the full description and the global schedule.</p>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <h2>What Charlotte Latin students have made</h2>
+    <p>Each slide below is the student's own summary of their final project. Select a link to see their full documentation, which is public.</p>
+
+    <article class="project">
+      <img src="https://fabacademy.org/2026/labs/charlotte/students/maxwell-negrin/presentation.png" alt="Final project slide for MN5, a 5-axis robotic arm" width="1920" height="1080" loading="lazy">
+      <div>
+        <h3>MN5 robotic arm</h3>
+        <p class="who">Max Negrin, Fab Academy 2026</p>
+        <p>A 5-axis arm controlled by LinuxCNC through a custom Pico 2W motion controller, built for about $400.</p>
+        <p class="links"><a href="https://fabacademy.org/2026/labs/charlotte/students/maxwell-negrin/">Max's site</a></p>
+      </div>
+    </article>
+
+    <article class="project">
+      <img src="https://fabacademy.org/2026/labs/charlotte/students/oliver-abbott/presentation.png" alt="Final project slide for Bee Monitor, a hive monitoring system" width="1920" height="1080" loading="lazy">
+      <div>
+        <h3>Bee Monitor</h3>
+        <p class="who">Oliver Abbott, Fab Academy 2026</p>
+        <p>A hive monitoring system with a Raspberry Pi, weight sensors, cameras and a cloud dashboard, installed on a live beehive.</p>
+        <p class="links"><a href="https://fabacademy.org/2026/labs/charlotte/students/oliver-abbott/">Oliver's site</a></p>
+      </div>
+    </article>
+
+    <article class="project">
+      <img src="https://fabacademy.org/2025/labs/charlotte/students/kathryn-wu/presentation.png" alt="Final project slide for VoxPlotter, a voice-controlled pen plotter" width="1920" height="1080" loading="lazy">
+      <div>
+        <h3>VoxPlotter</h3>
+        <p class="who">Kathryn Wu, Fab Academy 2025</p>
+        <p>A voice-controlled pen plotter built on a Raspberry Pi, with a custom circuit board, stepper motors and a wooden base.</p>
+        <p class="links"><a href="https://fabacademy.org/2025/labs/charlotte/students/kathryn-wu/">Kathryn's site</a><a href="https://fabacademy.org/2025/labs/charlotte/students/kathryn-wu/projects/final-project/">Final project page</a></p>
+      </div>
+    </article>
+
+    <article class="project">
+      <img src="https://fabacademy.org/2025/labs/charlotte/students/tyler-russell/presentation.png" alt="Final project slide for Terry the Rover, a Wi-Fi-controlled rover" width="1920" height="1080" loading="lazy">
+      <div>
+        <h3>Terry the Rover</h3>
+        <p class="who">Tyler Russell, Fab Academy 2025</p>
+        <p>A Wi-Fi-controlled rover with four independently driven motors, a custom circuit board, molded omnidirectional wheels and a web control page.</p>
+        <p class="links"><a href="https://fabacademy.org/2025/labs/charlotte/students/tyler-russell/">Tyler's site</a><a href="https://fabacademy.org/2025/labs/charlotte/students/tyler-russell/projects/final-project/">Final project page</a></p>
+      </div>
+    </article>
+
+    <article class="project">
+      <img src="https://fabacademy.org/2025/labs/charlotte/students/zijia-fang/presentation.png" alt="Final project slide for an interactive world map" width="1920" height="1080" loading="lazy">
+      <div>
+        <h3>Interactive World Map</h3>
+        <p class="who">Zijia Fang, Fab Academy 2025</p>
+        <p>A CNC-machined world map with electronics inside, made to bring attention to Charlotte Latin's Global Study Program.</p>
+        <p class="links"><a href="https://fabacademy.org/2025/labs/charlotte/students/zijia-fang/">Zijia's site</a><a href="https://fabacademy.org/2025/labs/charlotte/students/zijia-fang/projects/final-project/">Final project page</a></p>
+      </div>
+    </article>
+
+    <article class="project">
+      <img src="https://fabacademy.org/2024/labs/charlotte/students/landon-broadwell/presentation.png" alt="Final project slide for an integrated display helmet" width="1920" height="1080" loading="lazy">
+      <div>
+        <h3>Integrated Display Helmet</h3>
+        <p class="who">Landon Broadwell, Fab Academy 2024</p>
+        <p>A ski helmet concept with a dual OLED display and an orientation sensor, with a 3D-printed shell and laser-cut goggles.</p>
+        <p class="links"><a href="https://fabacademy.org/2024/labs/charlotte/students/landon-broadwell/">Landon's site</a><a href="https://fabacademy.org/2024/labs/charlotte/students/landon-broadwell/projects/final-project/">Final project page</a></p>
+      </div>
+    </article>
+
+    <article class="project">
+      <img src="https://fabacademy.org/2024/labs/charlotte/students/connor-cruz/presentation.png" alt="Final project slide for Na'danña' Guam, an interactive map board" width="1920" height="1080" loading="lazy">
+      <div>
+        <h3>Na'danña' Guam</h3>
+        <p class="who">Connor Cruz, Fab Academy 2024</p>
+        <p>An interactive board with an acrylic map of Guam, a display and a latte stone piece, made to link Guam's past to future generations.</p>
+        <p class="links"><a href="https://fabacademy.org/2024/labs/charlotte/students/connor-cruz/">Connor's site</a><a href="https://fabacademy.org/2024/labs/charlotte/students/connor-cruz/projects/final-project/">Final project page</a></p>
+      </div>
+    </article>
+
+    <article class="project">
+      <img src="https://fabacademy.org/2024/labs/charlotte/students/angelina-yang/presentation.png" alt="Final project slide for Pomo-desk, a smart desk" width="1920" height="1080" loading="lazy">
+      <div>
+        <h3>Pomo-desk</h3>
+        <p class="who">Angelina Yang, Fab Academy 2024</p>
+        <p>A smart desk that shows the time and weather, runs a pomodoro timer and has interactive lights.</p>
+        <p class="links"><a href="https://fabacademy.org/2024/labs/charlotte/students/angelina-yang/">Angelina's site</a><a href="https://fabacademy.org/2024/labs/charlotte/students/angelina-yang/projects/final-project/">Final project page</a></p>
+      </div>
+    </article>
+
+    <details>
+      <summary>All Charlotte Latin students, 2024 to 2026 (25)</summary>
+      <div class="inner">
+        <p>Each name links to that student's Fab Academy site. The year is the Fab Academy year their site is filed under.</p>
+        <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Student</th><th scope="col">Fab Academy year</th></tr></thead>
+          <tbody>
+            <tr><td><a href="https://fabacademy.org/2026/labs/charlotte/students/maxwell-negrin/">Max Negrin</a></td><td>2026</td></tr>
+            <tr><td><a href="https://fabacademy.org/2026/labs/charlotte/students/mckinnon-collins/">McKinnon Collins</a></td><td>2026</td></tr>
+            <tr><td><a href="https://fabacademy.org/2026/labs/charlotte/students/oliver-abbott/">Oliver Abbott</a></td><td>2026</td></tr>
+            <tr><td><a href="https://fabacademy.org/2026/labs/charlotte/students/yian-hu/">Yian Hu</a></td><td>2026</td></tr>
+            <tr><td><a href="https://fabacademy.org/2025/labs/charlotte/students/noah-smith/">Noah Smith</a></td><td>2025</td></tr>
+            <tr><td><a href="https://fabacademy.org/2025/labs/charlotte/students/kathryn-wu/">Kathryn Wu</a></td><td>2025</td></tr>
+            <tr><td><a href="https://fabacademy.org/2025/labs/charlotte/students/amalia-bordoloi/">Amalia Bordoloi</a></td><td>2025</td></tr>
+            <tr><td><a href="https://fabacademy.org/2025/labs/charlotte/students/jenna-chebaro/">Jenna Chebaro</a></td><td>2025</td></tr>
+            <tr><td><a href="https://fabacademy.org/2025/labs/charlotte/students/cooper-cumbus/">Cooper Cumbus</a></td><td>2025</td></tr>
+            <tr><td><a href="https://fabacademy.org/2025/labs/charlotte/students/zijia-fang/">Zijia Fang</a></td><td>2025</td></tr>
+            <tr><td><a href="https://fabacademy.org/2025/labs/charlotte/students/zaina-gibrine/">Zaina Gibrine</a></td><td>2025</td></tr>
+            <tr><td><a href="https://fabacademy.org/2025/labs/charlotte/students/elle-hahn/">Elle Hahn</a></td><td>2025</td></tr>
+            <tr><td><a href="https://fabacademy.org/2025/labs/charlotte/students/andrew-puky/">Andrew Puky</a></td><td>2025</td></tr>
+            <tr><td><a href="https://fabacademy.org/2025/labs/charlotte/students/tyler-russell/">Tyler Russell</a></td><td>2025</td></tr>
+            <tr><td><a href="https://fabacademy.org/2025/labs/charlotte/students/wilson-zheng/">Wilson Zheng</a></td><td>2025</td></tr>
+            <tr><td><a href="https://fabacademy.org/2024/labs/charlotte/students/landon-broadwell/">Landon Broadwell</a></td><td>2024</td></tr>
+            <tr><td><a href="https://fabacademy.org/2024/labs/charlotte/students/connor-cruz/">Connor Cruz</a></td><td>2024</td></tr>
+            <tr><td><a href="https://fabacademy.org/2024/labs/charlotte/students/alana-duffy/">Alana Duffy</a></td><td>2024</td></tr>
+            <tr><td><a href="https://fabacademy.org/2024/labs/charlotte/students/collin-kanofsky/">Collin Kanofsky</a></td><td>2024</td></tr>
+            <tr><td><a href="https://fabacademy.org/2024/labs/charlotte/students/kabir-nawaz/">Kabir Nawaz</a></td><td>2024</td></tr>
+            <tr><td><a href="https://fabacademy.org/2024/labs/charlotte/students/evan-park/">Evan Park</a></td><td>2024</td></tr>
+            <tr><td><a href="https://fabacademy.org/2024/labs/charlotte/students/richard-shan/">Richard Shan</a></td><td>2024</td></tr>
+            <tr><td><a href="https://fabacademy.org/2024/labs/charlotte/students/david-vaughn/">David Vaughn</a></td><td>2024</td></tr>
+            <tr><td><a href="https://fabacademy.org/2024/labs/charlotte/students/angelina-yang/">Angelina Yang</a></td><td>2024</td></tr>
+            <tr><td><a href="https://fabacademy.org/2024/labs/charlotte/students/ryan-zhou/">Ryan Zhou</a></td><td>2024</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="margin-top:1rem">Charlotte Latin lab pages: <a href="https://fabacademy.org/2026/labs/charlotte/">2026</a>, <a href="https://fabacademy.org/2025/labs/charlotte/">2025</a>, <a href="https://fabacademy.org/2024/labs/charlotte/">2024</a>.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="different">
+  <div class="wrap">
+    <h2>What makes it different</h2>
+    <dl class="rows">
+      <div class="row"><dt>It is a real college-level course</dt><dd><p>Charlotte Latin students take the same global course as students at labs around the world. We never offer a watered-down or junior version.</p></dd></div>
+      <div class="row"><dt>A global classroom</dt><dd><p>The course is taught by Neil Gershenfeld of MIT. Local college professors and experts work alongside Charlotte Latin's Innovation and Design teachers. Students' work is reviewed by a global evaluator, and the program ends each summer with an international Fab conference. The next one is in Finland in the first week of August 2027, and students may attend if they choose.</p></dd></div>
+      <div class="row"><dt>Students build, not just study</dt><dd><p>Every week produces a physical or working result. Students make their own circuit boards, write code that runs on hardware they built, and finish with a project of their own design.</p></dd></div>
+      <div class="row"><dt>Students own their work</dt><dd><p>Students keep the intellectual property in everything they make. Companies such as Formlabs grew out of Fab Academy projects.</p></dd></div>
+      <div class="row"><dt>More than one review</dt><dd><p>Documentation emphasizes quality over quantity. Students defend their work orally three times this year instead of once.</p></dd></div>
+      <div class="row"><dt>New for 2027</dt><dd><p>Tom Dubick built a series of electronics boards with matching presentations that students work through before class begins. AI is taught as a study tool, and the program teaches students to document their work professionally using Git.</p></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <h2>Why do it, and why not</h2>
+    <p>We want families to choose Fab Academy for the right reasons. These are the honest versions of both lists.</p>
+    <div class="split">
+      <div>
+        <h3>Good reasons to do it</h3>
+        <ul class="plain">
+          <li>The student wants to build digital fabrication skills.</li>
+          <li>The student is looking for a real challenge.</li>
+          <li>The student wants to experience a college-level class taught by leading people in the field.</li>
+          <li>The student is hardworking, mature and passionate about making things.</li>
+          <li>Graduates report that it helps with college clubs, teams and internships, and we believe it may be the best preparation for a design or technical career.</li>
+        </ul>
+      </div>
+      <div class="why-not">
+        <h3>Reasons not to do it</h3>
+        <ul class="plain">
+          <li>It will look good on a college application. Graduates report other benefits, but its value in admissions is uncertain.</li>
+          <li>The parents think it is a good idea. The student has to want it.</li>
+          <li>The student's best friend is taking the class.</li>
+          <li>The student expects it to be easy. Students will be stressed at times and will sometimes be unhappy. The question is whether they can embrace the journey.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="consider">
+  <div class="wrap">
+    <h2>What to consider before you agree</h2>
+    <dl class="rows">
+      <div class="row"><dt>Time</dt><dd>
+        <p>Class meets Monday to Thursday, 3:00 to 5:30 PM, and sometimes later. Lectures are recorded in the morning and watched on Wednesday afternoons. Fridays are usually free, and there are occasional Saturdays, 9 AM to 4 PM, for group and personal work.</p>
+        <p>Plan on up to 10 to 15 more hours a week at home for lectures, research and documentation. March and April run about 35 hours a week in total, and June about 45.</p>
+      </dd></div>
+      <div class="row"><dt>Other activities</dt><dd>
+        <p>Plan to step back from spring sports, clubs and ACT review during the class. Winter sports are fine. About 20 to 25 percent of the class time is set by the group schedule, and Machine Week is the biggest group week.</p>
+        <p>The class ends with final presentations on June 7 to 11, and students should expect long weeks in the first three weeks of summer to finish their final project. That makes most June trips and international exchange programs that leave when school ends a poor fit.</p>
+      </dd></div>
+      <div class="row"><dt>Cost</dt><dd>
+        <p>The total is $5,750: $750 for the Pre-Fab class in the fall and $5,000 for Fab Academy. That includes a 3D printer, a professional soldering iron and all materials and expenses. The money pays for materials. Payment plans and scholarships are available if cost is an issue.</p>
+        <p>The Pre-Fab payment is a nonrefundable deposit. Students who already own a 3D printer should ask Tom Dubick about the Pre-Fab cost.</p>
+      </dd></div>
+      <div class="row"><dt>The fall Pre-Fab class</dt><dd>
+        <p>Pre-Fab meets once or twice a week outside the normal school day. Students assemble their own 3D printer, build soldering skills, learn Fusion 360 and advanced fabrication skills, and start documenting their work. They must also keep their grades up.</p>
+        <p>Students, parents and teachers review progress together, and families decide in December whether to continue.</p>
+      </dd></div>
+      <div class="row"><dt>If a student falls behind</dt><dd>
+        <p>A student who has not finished by June can complete the work in the fall with no penalty. The final project is chosen early and should not change after March 1 unless the instructors and lab director approve.</p>
+      </dd></div>
+      <div class="row"><dt>Support at home</dt><dd>
+        <p>Students get a 3D printer and soldering tools and can do weekend work at home. Two habits make the workload easier: learning to troubleshoot instead of waiting for a fix, and following the instructors' early advice so problems do not pile up late. Families at the information meeting raised both.</p>
+      </dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="wrap">
+    <h2>2027 schedule</h2>
+    <p>Class meets Monday to Thursday. Weekly topics fall on Wednesdays, and recitations, shown in italics, are on Mondays. Dates can change, so check back here for updates.</p>
+    <div class="table-scroll">
+    <table class="sched">
+      <thead><tr><th scope="col">Date</th><th scope="col">Topic</th></tr></thead>
+      <tbody>
+        <tr class="mark"><td>Jan 20</td><td>Principles and practices, presentations, introductions, projects</td></tr>
+        <tr class="recit"><td>Jan 25</td><td>Recitation: version control</td></tr>
+        <tr><td>Jan 27</td><td>Computer-aided design</td></tr>
+        <tr><td>Feb 3</td><td>Computer-controlled cutting</td></tr>
+        <tr class="recit"><td>Feb 8</td><td>Recitation: programming and debugging</td></tr>
+        <tr><td>Feb 10</td><td>Embedded programming</td></tr>
+        <tr><td>Feb 17</td><td>3D scanning and printing</td></tr>
+        <tr class="recit"><td>Feb 22</td><td>Recitation: AI agents</td></tr>
+        <tr class="mark"><td>Feb 24</td><td>Electronics design. First review.</td></tr>
+        <tr><td>Mar 3</td><td>Computer-controlled machining</td></tr>
+        <tr class="recit"><td>Mar 8</td><td>Recitation: edge AI</td></tr>
+        <tr><td>Mar 10</td><td>Electronics production</td></tr>
+        <tr><td>Mar 17</td><td>Mechanical design, machine design</td></tr>
+        <tr class="recit"><td>Mar 22</td><td>Recitation: machine building</td></tr>
+        <tr class="mark"><td>Mar 24</td><td>Break</td></tr>
+        <tr><td>Mar 31</td><td>Input devices</td></tr>
+        <tr><td>Apr 7</td><td>Output devices</td></tr>
+        <tr class="recit"><td>Apr 12</td><td>Recitation: fab ecosystem</td></tr>
+        <tr><td>Apr 14</td><td>Molding and casting</td></tr>
+        <tr><td>Apr 21</td><td>Networking and communications</td></tr>
+        <tr class="recit"><td>Apr 26</td><td>Recitation: education</td></tr>
+        <tr><td>Apr 28</td><td>Interface and application programming</td></tr>
+        <tr class="mark"><td>May 5</td><td>System integration. Second review.</td></tr>
+        <tr class="recit"><td>May 10</td><td>Recitation: Fab All-In</td></tr>
+        <tr><td>May 12</td><td>Wildcard week</td></tr>
+        <tr><td>May 19</td><td>Applications and implications, project development</td></tr>
+        <tr class="recit"><td>May 24</td><td>Recitation: start-ups</td></tr>
+        <tr><td>May 26</td><td>Invention, intellectual property, and income</td></tr>
+        <tr class="mark"><td>Jun 2</td><td>No class</td></tr>
+        <tr class="mark"><td>Jun 7 to 11</td><td>Final project presentations</td></tr>
+        <tr><td>Aug 1 to 7</td><td>FAB27, the international Fab conference, in Finland. Optional for students.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Questions families ask</h2>
+    <div class="faq">
+      <details><summary>Can my child do other activities during Fab Academy?</summary>
+        <p>Some students manage one, but we recommend caution. The class takes about 35 hours a week in March and April and about 45 in June, and the schedule leaves little slack. Spring sports, clubs and ACT review are the hardest to combine with it, and most June trips will not work. Winter sports are fine because they end before the spring class gets busy.</p>
+        <p>About 20 to 25 percent of class time is set by the group schedule, and Machine Week is the biggest group week. Front-loading the computer-aided design and KiCad work in the fall helps, but it does not remove the spring workload. If your child has a major commitment in the spring, talk with Tom Dubick before you decide.</p></details>
+      <details><summary>Does my child need experience with electronics or design?</summary>
+        <p>Not necessarily. The program welcomes different technical and cultural backgrounds, and an art student can do very well. The fall Pre-Fab class builds the basics. What matters most is that the student is willing to work hard and persist when something does not work.</p></details>
+      <details><summary>Can students do the work at home?</summary>
+        <p>Yes. Weekend work can be done at home, and students receive a 3D printer and soldering tools.</p></details>
+      <details><summary>What if my child does not finish by June?</summary>
+        <p>Unfinished students can finish in the fall with no penalty.</p></details>
+      <details><summary>Will this help with college admissions?</summary>
+        <p>Graduates report that it helps with college clubs, teams and internships. Its value in admissions is uncertain, so we do not recommend doing it for that reason.</p></details>
+      <details><summary>Who owns what my child makes?</summary>
+        <p>Students own all of their intellectual property.</p></details>
+      <details><summary>Do students have to go to the conference in Finland?</summary>
+        <p>No. It is optional. The next Fab conference is in Finland in the first week of August 2027.</p></details>
+      <details><summary>When do we have to decide?</summary>
+        <p>Families decide in December, after the fall Pre-Fab class, whether to continue into the spring course.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Next steps and questions</h2>
+    <p>Questions about the program, cost, or whether it fits your child are welcome. Email Tom Dubick, Fab Lab Director and Fab Academy instructor at Charlotte Latin.</p>
+    <p><a class="btn primary" href="mailto:tom.dubick@charlottelatin.org?subject=Fab%20Academy%202027">tom.dubick@charlottelatin.org</a></p>
+    <p class="note">A page for students, with the Pre-Fab checklist, documentation guide and tips from past students, is coming soon.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Charlotte Latin School Fab Lab. Fab Academy is taught by Neil Gershenfeld of MIT. Student sites are public and are written and owned by the students.</p>
+    <p>Last updated October 2026.</p>
+  </div>
+</footer>
+</body>
+</html>
